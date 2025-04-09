@@ -16,8 +16,8 @@
 **colums**:
 
 - id (BIGINT) - primary key - auto_increment - NOT NULL
-- degree_course_id (BIGINT) - foreign key - NOT NULL
 - name: VARCHAR(255) - NOT NULL
+- description: TEXT()
 
 --------------------------------------------------------------
 
@@ -26,7 +26,7 @@
 **colums**:
 
 - id (BIGINT) - primary key - auto_increment - NOT NULL
-- course_id (BIGINT) - foreign key - NOT NULL
+- department_id (BIGINT) - foreign key - NOT NULL
 - name: VARCHAR(255) - NOT NULL
 
 --------------------------------------------------------------
@@ -36,9 +36,18 @@
 **colums**:
 
 - id (BIGINT) - primary key - auto_increment - NOT NULL
-- teacher_id (BIGINT) - foreign key - NOT NULL
-- exam_session_id (BIGINT) - foreign jey - NOT NULL
+- degree_course_id (BIGINT) - foreign key - NOT NULL
 - name: VARCHAR(255) - NOT NULL
+
+--------------------------------------------------------------
+
+## Table name: 'exam_appeals'
+
+**colums**:
+
+- id (BIGINT) - primary key - auto_increment - NOT NULL
+- course_id: foreign key - NOT NULL
+- date: DATE - NOT NULL
 
 --------------------------------------------------------------
 
@@ -50,9 +59,8 @@
 - name: VARCHAR(255) - NOT NULL
 - lastname: VARCHAR(255) - NOT NULL
 - email: VARCHAR(255) - NOT NULL - UNIQUE
-- address: VARCHAR(255) - NULL
-- phone: VARCHAR(20) - NULL
-- date_of_birth: DATE - NULL
+- serial_number: MEDIUMINT - NOT NULL - UNIQUE
+- degree_course_id (BIGINT) - foreign key - NOT NULL
 
 --------------------------------------------------------------
 
@@ -61,12 +69,9 @@
 **colums**:
 
 - id (BIGINT) - primary key - auto_increment - NOT NULL
-- name: VARCHAR(255) - NOT NULL
-- lastname: VARCHAR(255) - NOT NULL
-- email: VARCHAR(255) - NOT NULL - UNIQUE
-- address: VARCHAR(255) - NULL
-- phone: VARCHAR(20) - NULL
-- date_of_birth: DATE - NULL
+- name: VARCHAR(100) - NOT NULL
+- lastname: VARCHAR(100) - NOT NULL
+- email: VARCHAR(100) - NOT NULL - UNIQUE
 
 --------------------------------------------------------------
 
@@ -75,7 +80,9 @@
 **colums**:
 
 - id (BIGINT) - primary key - auto_increment - NOT NULL
-- vote: SMALL
+- course_id (BIGINT) - foreign key - NOT NULL
+- student_id (BIGINT) - foreign key - NOT NULL
+- vote: SMALLINT
 - result: TINYINT
 - date: DATE - NOT NULL
 
