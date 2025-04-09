@@ -60,7 +60,7 @@
 - lastname: VARCHAR(255) - NOT NULL
 - email: VARCHAR(255) - NOT NULL - UNIQUE
 - serial_number: MEDIUMINT - NOT NULL - UNIQUE
-- degree_course_id (BIGINT) - foreign key - NOT NULL
+- course_id (BIGINT) - foreign key - NOT NULL
 
 --------------------------------------------------------------
 
@@ -87,3 +87,20 @@
 - date: DATE - NOT NULL
 
 --------------------------------------------------------------
+
+## NOTE 
+
+- Un Dipartimento ha molti Corsi di Laurea
+
+- Un Corso di Laurea ha molti Corsi
+
+- Un Corso è tenuto da uno o più Insegnanti
+
+- Un Corso ha molti Appelli di Esame
+
+- Uno Studente è iscritto a un solo Corso di Laurea
+
+- Uno Studente può iscriversi a più Appelli di Esame
+
+- Ogni Iscrizione Esame ha un voto e un eventuale lode
+
