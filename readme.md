@@ -76,6 +76,7 @@
 - email: VARCHAR(100) - NOT NULL - UNIQUE
 - serial_number: MEDIUMINT - NOT NULL - UNIQUE
 - degree_id INT - FK - NN
+- enroiment_date: DATE - NOT NULL
 
 ## Pivot Table: exam_student
 - id: INT PK AI NN UN
