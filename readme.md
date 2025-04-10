@@ -1,6 +1,6 @@
 ## Esercizio
 
-# Modellizzare la struttura di un database per memorizzare tutti i dati riguardanti una università:
+# Modellizzare la struttura di un database per memorizzare tutti i dati riguardanti un'università:
 
 - sono presenti diversi **Dipartimenti** (es.: Lettere e Filosofia, Matematica, Ingegneria ecc.);
 - ogni **Dipartimento** offre più **Corsi di Laurea** (es.: Civiltà e Letterature Classiche, Informatica, Ingegneria Elettronica ecc..)
@@ -15,19 +15,23 @@
 
 **colums**:
 
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- name: VARCHAR(255) - NOT NULL
-- description: TEXT()
+- id: INT - primary key - auto_increment - NOT NULL - UNIQUE
+- name: VARCHAR(100) - NOT NULL
+- head_of_department: VARCHAR(100) NOT NULL
+- phone_number: CHAR(10) NULL
+- email: VARCHAR(50)
 
 --------------------------------------------------------------
 
-## Table name: 'degree_courses'
+## Table name: 'degrees' (departments -> degreese)
 
 **colums**:
 
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- department_id (BIGINT) - foreign key - NOT NULL
-- name: VARCHAR(255) - NOT NULL
+- id INT - primary key - auto_increment - NOT NULL - UNIQUE
+- name: VARCHAR(100) - NOT NULL
+- department_id INT - foreign key - NOT NULL
+- level: 
+- website:
 
 --------------------------------------------------------------
 
@@ -35,32 +39,13 @@
 
 **colums**:
 
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- degree_course_id (BIGINT) - foreign key - NOT NULL
-- name: VARCHAR(255) - NOT NULL
-
---------------------------------------------------------------
-
-## Table name: 'exam_appeals'
-
-**colums**:
-
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- course_id: foreign key - NOT NULL
-- date: DATE - NOT NULL
-
---------------------------------------------------------------
-
-## Table name: 'students'
-
-**colums**:
-
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- name: VARCHAR(255) - NOT NULL
-- lastname: VARCHAR(255) - NOT NULL
-- email: VARCHAR(255) - NOT NULL - UNIQUE
-- serial_number: MEDIUMINT - NOT NULL - UNIQUE
-- course_id (BIGINT) - foreign key - NOT NULL
+- id INT - primary key - auto_increment - NOT NULL - UNIQUE
+- degree_id INT - foreign key - NOT NULL
+- name: VARCHAR(100) - NOT NULL
+- cfu: TINYINT
+- period: VARCHAR(50) NOT NULL
+- year:
+- website:
 
 --------------------------------------------------------------
 
@@ -68,10 +53,35 @@
 
 **colums**:
 
-- id (BIGINT) - primary key - auto_increment - NOT NULL
+- id INT - primary key - auto_increment - NOT NULL - UNIQUE
 - name: VARCHAR(100) - NOT NULL
 - lastname: VARCHAR(100) - NOT NULL
 - email: VARCHAR(100) - NOT NULL - UNIQUE
+- phone_number: CHAR(10)
+
+## Pivot: course_teacher
+- id INT PK AI NN UN
+- teacher_id INT (FK)
+- course_id INT (FK)
+
+---------------------------------------------------------------
+
+## Table name: 'students'
+
+**colums**:
+
+- id INT - primary key - auto_increment - NOT NULL
+- name: VARCHAR(100) - NOT NULL
+- lastname: VARCHAR(100) - NOT NULL
+- email: VARCHAR(100) - NOT NULL - UNIQUE
+- serial_number: MEDIUMINT - NOT NULL - UNIQUE
+- degree_id INT - FK - NN
+
+## Pivot Table: exam_student
+- id: INT PK AI NN UN
+- exam_id: FK
+- student_id: FK
+- vote:
 
 --------------------------------------------------------------
 
@@ -79,12 +89,12 @@
 
 **colums**:
 
-- id (BIGINT) - primary key - auto_increment - NOT NULL
-- course_id (BIGINT) - foreign key - NOT NULL
-- student_id (BIGINT) - foreign key - NOT NULL
-- vote: SMALLINT
-- result: TINYINT
+- id INT - primary key - auto_increment - NOT NULL - UNIQUE
+- course_id INT - FK - NOT NULL
 - date: DATE - NOT NULL
+- hour: TIME - NOT NULL
+- location: VARCHAR(100) - NOT NULL
+- address: VARCHAR(100) - NOT NULL
 
 --------------------------------------------------------------
 
@@ -103,4 +113,3 @@
 - Uno Studente può iscriversi a più Appelli di Esame
 
 - Ogni Iscrizione Esame ha un voto e un eventuale lode
-
