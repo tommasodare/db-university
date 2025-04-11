@@ -16,3 +16,10 @@ ORDER BY COUNT(`id`) ASC
 SELECT `exam_id`, AVG(`vote`) AS average_vote
 FROM `exam_student`
 GROUP BY `exam_id`
+
+## Query 4 - Contare quanti corsi di laurea ci sono per ogni dipartimento
+
+SELECT `departments`.`name`, COUNT(`degrees`.`id`)
+FROM `departments`
+JOIN `degrees` ON `degrees`.`department_id` = `departments`.`id`
+GROUP BY `departments`.`name`
